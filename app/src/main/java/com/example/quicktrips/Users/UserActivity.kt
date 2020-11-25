@@ -1,7 +1,8 @@
-package com.example.quicktrips
+package com.example.quicktrips.Users
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.quicktrips.R
 
 class UserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
