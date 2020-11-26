@@ -7,10 +7,10 @@ import com.example.quicktrips.db.entites.User
 interface UserDao {
 
     @Insert
-    suspend fun insert(vararg user: User)
+    suspend fun insert(user: User)
 
     @Update
-    suspend fun update(vararg user: User)
+    suspend fun update(user: User)
 
     @Delete
     suspend fun delete(user: User)

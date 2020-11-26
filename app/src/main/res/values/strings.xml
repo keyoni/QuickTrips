@@ -16,4 +16,5 @@
     <string name="user_locations_placeholder">This is where Users will see list of Locations to travel to</string>
     <string name="user_profile_placeholder">This is where Users will see their own profile and list of travelled locations</string>
     <string name="log_out">Log out</string>
+    <string name="i_am_the_doctor_check">I Am The Doctor</string>
 </resources>

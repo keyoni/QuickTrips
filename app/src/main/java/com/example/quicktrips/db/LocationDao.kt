@@ -6,10 +6,10 @@ import com.example.quicktrips.db.entites.Location
 @Dao
 interface LocationDao {
     @Insert
-    suspend fun insert(vararg location: Location)
+    suspend fun insert(location: Location)
 
     @Update
-    suspend fun update(vararg location: Location)
+    suspend fun update(location: Location)
 
     @Delete
     suspend  fun delete(location: Location)

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.quicktrips.databinding.FragmentSignInBinding
 import com.example.quicktrips.userscreens.UserActivity
 
@@ -19,9 +20,14 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
 
         binding.btnSignIn.setOnClickListener() {
+            //add UserID as extra then use to esxcaty  account profile page and if Doctor
             val intent = Intent(activity,UserActivity::class.java).also {
                 startActivity(it)
             }
+        }
+
+        binding.btnHomeSignUp.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.navigate_to_signUpFragment)
         }
     }
 

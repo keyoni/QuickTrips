@@ -11,9 +11,9 @@ class AppRepository(
 ) {
     // From User Dao
 
-    suspend fun insert(vararg user: User) = db.getUserDao().insert(*user)
+    suspend fun insert(user: User) = db.getUserDao().insert(user)
 
-    suspend fun update(vararg user: User) = db.getUserDao().update(*user)
+    suspend fun update(user: User) = db.getUserDao().update(user)
 
     suspend fun delete(user: User) = db.getUserDao().delete(user)
 
@@ -23,9 +23,9 @@ class AppRepository(
 
     // from Trip Dao
 
-    suspend fun insert(vararg trip: Trip) = db.getTripDao().insert(*trip)
+    suspend fun insert(trip: Trip) = db.getTripDao().insert(trip)
 
-    suspend fun update(vararg trip: Trip) = db.getTripDao().update(*trip)
+    suspend fun update(trip: Trip) = db.getTripDao().update(trip)
 
     suspend fun delete(trip: Trip) = db.getTripDao().delete(trip)
 
@@ -36,9 +36,9 @@ class AppRepository(
     suspend fun getUserTravelledTrips(travelled: Boolean, userId: Int): List<Trip> = db.getTripDao().getUserPendingTrips(travelled,userId)
 
     // From Location Dao
-    suspend fun insert(vararg location: Location) = db.getLocationDao().insert(*location)
+    suspend fun insert(location: Location) = db.getLocationDao().insert(location)
 
-    suspend fun update(vararg location: Location) = db.getLocationDao().update(*location)
+    suspend fun update(location: Location) = db.getLocationDao().update(location)
 
     suspend fun delete(location: Location) = db.getLocationDao().delete(location)
 

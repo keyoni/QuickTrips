@@ -6,10 +6,10 @@ import com.example.quicktrips.db.entites.Trip
 @Dao
 interface TripDao {
     @Insert
-    suspend fun insert(vararg trip: Trip)
+    suspend fun insert(trip: Trip)
 
     @Update
-    suspend fun update(vararg trip: Trip)
+    suspend fun update(trip: Trip)
 
     @Delete
     suspend fun delete(trip: Trip)

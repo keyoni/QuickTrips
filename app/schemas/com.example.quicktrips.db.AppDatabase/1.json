@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cb172acd7f899d96d85deb310056be43",
+    "identityHash": "5fcdcadef6897e23251ff6e20469f1ec",
     "entities": [
       {
         "tableName": "user_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT, `mIsDoctor` INTEGER NOT NULL, `mUserName` TEXT NOT NULL, `mPassword` TEXT NOT NULL, `mFirstName` TEXT NOT NULL, `mLastName` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT, `mBio` TEXT NOT NULL, `mUserName` TEXT NOT NULL, `mPassword` TEXT NOT NULL, `mFirstName` TEXT NOT NULL, `mLastName` TEXT NOT NULL, `mIsDoctor` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "mUserId",
@@ -15,9 +15,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "mIsDoctor",
-            "columnName": "mIsDoctor",
-            "affinity": "INTEGER",
+            "fieldPath": "mBio",
+            "columnName": "mBio",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -42,6 +42,12 @@
             "fieldPath": "mLastName",
             "columnName": "mLastName",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIsDoctor",
+            "columnName": "mIsDoctor",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -100,7 +106,7 @@
       },
       {
         "tableName": "trip_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTripId` INTEGER, `hasTravelled` INTEGER NOT NULL, `mLocationIdTrip` INTEGER NOT NULL, `mUserIdTrip` INTEGER NOT NULL, PRIMARY KEY(`mTripId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTripId` INTEGER, `hasTravelled` INTEGER NOT NULL, `mTripLocation` TEXT NOT NULL, `mTripTimePeriod` TEXT NOT NULL, `TripDangerLevel` INTEGER NOT NULL, `mUserIdTrip` INTEGER NOT NULL, PRIMARY KEY(`mTripId`))",
         "fields": [
           {
             "fieldPath": "mTripId",
@@ -115,8 +121,20 @@
             "notNull": true
           },
           {
-            "fieldPath": "mLocationIdTrip",
-            "columnName": "mLocationIdTrip",
+            "fieldPath": "mTripLocation",
+            "columnName": "mTripLocation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTripTimePeriod",
+            "columnName": "mTripTimePeriod",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "TripDangerLevel",
+            "columnName": "TripDangerLevel",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -140,7 +158,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cb172acd7f899d96d85deb310056be43')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5fcdcadef6897e23251ff6e20469f1ec')"
     ]
   }
 }

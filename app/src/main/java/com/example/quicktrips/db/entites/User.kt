@@ -8,9 +8,10 @@ data class User(
     val mUserName: String,
     val mPassword: String,
     val mFirstName: String,
-    val mLastName: String
+    val mLastName: String,
+    var mIsDoctor: Boolean
 ) {
     @PrimaryKey(autoGenerate = true)
     var mUserId : Int? = null
-    var mIsDoctor: Boolean = false
+    var mBio: String = "No Bio Yet"
 }
