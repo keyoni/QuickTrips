@@ -1,5 +1,6 @@
 package com.example.quicktrips.db.repos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Query
 import com.example.quicktrips.db.AppDatabase
 import com.example.quicktrips.db.entites.Location
@@ -17,10 +18,11 @@ class AppRepository(
 
     suspend fun delete(user: User) = db.getUserDao().delete(user)
 
-    suspend fun getUsers(): List<User> = db.getUserDao().getUsers()
+    fun getUsers(): LiveData<List<User>> = db.getUserDao().getUsers()
 
     suspend fun getUsersById(userId: Int): User = db.getUserDao().getUsersById(userId)
 
+    fun getUserByUsernameAndPassword (username: String, password: String): LiveData<List<User>> = db.getUserDao().getUsersByUsernameAndPassword(username, password)
     // from Trip Dao
 
     suspend fun insert(trip: Trip) = db.getTripDao().insert(trip)
@@ -42,7 +44,7 @@ class AppRepository(
 
     suspend fun delete(location: Location) = db.getLocationDao().delete(location)
 
-    suspend fun getLocations(): List<Location> = db.getLocationDao().getLocations()
+    fun getLocations(): LiveData<List<Location>> = db.getLocationDao().getLocations()
 
     suspend fun getLocationsById(locationId: Int): Location = db.getLocationDao().getLocationsById(locationId)
 
