@@ -1,6 +1,7 @@
 package com.example.quicktrips.db
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quicktrips.db.entites.Location
 import com.example.quicktrips.db.entites.Trip
@@ -16,7 +17,11 @@ class AppViewModel(
 
     var mAllUsers = repository.getUsers()
     var mAllLocations = repository.getLocations()
+    var mCurrentUser: LiveData<List<User>> = repository.getUsers()
 
+    init {
+       var curUser = User("Null","Null","Null","Null",false)
+    }
     // From Users
 
    // var loggedInUser = repository.getUserByUsernameAndPassword()
@@ -37,12 +42,12 @@ class AppViewModel(
         repository.getUsers()
     }
 
-    fun getUsersById(userId: Int) = CoroutineScope(Dispatchers.Main).launch {
-        repository.getUsersById(userId)
+    fun getUsersById(userId: Int) {
+       mCurrentUser = repository.getUsersById(userId)
     }
 
     fun getUserByUsernameAndPassword (username: String, password: String) {
-        repository.getUserByUsernameAndPassword(username,password)
+       mCurrentUser = repository.getUserByUsernameAndPassword(username,password)
     }
 
     //From Trips

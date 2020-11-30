@@ -20,7 +20,7 @@ interface UserDao {
     fun getUsers(): LiveData<List<User>>
 
     @Query("SELECT * FROM user_table WHERE mUserId = :userId ")
-    suspend  fun getUsersById(userId: Int): User
+    fun getUsersById(userId: Int): LiveData<List<User>>
 
    @Query("SELECT * FROM user_table WHERE mUserName = :username AND mPassword = :password ")
     fun getUsersByUsernameAndPassword(username: String, password: String): LiveData<List<User>>

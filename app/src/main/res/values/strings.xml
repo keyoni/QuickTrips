@@ -17,4 +17,7 @@
     <string name="user_profile_placeholder">This is where Users will see their own profile and list of travelled locations</string>
     <string name="log_out">Log out</string>
     <string name="i_am_the_doctor_check">I Am The Doctor</string>
+    <string name="preference_file_key">myAppPref</string>
+    <string name="saved_user_id">current_user_id</string>
+    <string name="saved_user_isDoctor">current_user_isDoctor</string>
 </resources>

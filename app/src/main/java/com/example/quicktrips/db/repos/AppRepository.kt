@@ -17,10 +17,9 @@ class AppRepository(
     suspend fun update(user: User) = db.getUserDao().update(user)
 
     suspend fun delete(user: User) = db.getUserDao().delete(user)
-
     fun getUsers(): LiveData<List<User>> = db.getUserDao().getUsers()
 
-    suspend fun getUsersById(userId: Int): User = db.getUserDao().getUsersById(userId)
+  fun getUsersById(userId: Int): LiveData<List<User>> = db.getUserDao().getUsersById(userId)
 
     fun getUserByUsernameAndPassword (username: String, password: String): LiveData<List<User>> = db.getUserDao().getUsersByUsernameAndPassword(username, password)
     // from Trip Dao
