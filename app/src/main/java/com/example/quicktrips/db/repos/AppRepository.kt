@@ -19,7 +19,7 @@ class AppRepository(
     suspend fun delete(user: User) = db.getUserDao().delete(user)
     fun getUsers(): LiveData<List<User>> = db.getUserDao().getUsers()
 
-  fun getUsersById(userId: Int): LiveData<List<User>> = db.getUserDao().getUsersById(userId)
+    fun getUsersById(userId: Int): LiveData<List<User>> = db.getUserDao().getUsersById(userId)
 
     fun getUserByUsernameAndPassword (username: String, password: String): LiveData<List<User>> = db.getUserDao().getUsersByUsernameAndPassword(username, password)
     // from Trip Dao
@@ -30,11 +30,11 @@ class AppRepository(
 
     suspend fun delete(trip: Trip) = db.getTripDao().delete(trip)
 
-    suspend fun getTrips(): List<Trip> = db.getTripDao().getTrips()
+    fun getTrips(): LiveData<List<Trip>> = db.getTripDao().getTrips()
 
-    suspend fun getUserPendingTrips(travelled: Boolean, userId: Int): List<Trip> = db.getTripDao().getUserPendingTrips(travelled,userId)
+    fun getUserPendingTrips(travelled: Boolean, userId: Int): LiveData<List<Trip>> = db.getTripDao().getUserPendingTrips(travelled,userId)
 
-    suspend fun getUserTravelledTrips(travelled: Boolean, userId: Int): List<Trip> = db.getTripDao().getUserPendingTrips(travelled,userId)
+    fun getUserTravelledTrips(travelled: Boolean, userId: Int): LiveData<List<Trip>> = db.getTripDao().getUserPendingTrips(travelled,userId)
 
     // From Location Dao
     suspend fun insert(location: Location) = db.getLocationDao().insert(location)

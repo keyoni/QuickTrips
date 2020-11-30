@@ -16,14 +16,14 @@ class UserLogin(
     var userId = editor.putInt("current_user_id", mCurrentUser.mUserId!!).apply()
     var userisDoctor = editor.putInt("current_user_isDoctor",intToDoctor).apply()
 
-    fun Login()
+    fun login()
     {
         sharedPref ?:
         return with (editor)
         {
             putInt("current_user_id", mCurrentUser.mUserId!!)
             putInt("current_user_isDoctor",intToDoctor)
-            commit()
+            apply()
         }
     }
 

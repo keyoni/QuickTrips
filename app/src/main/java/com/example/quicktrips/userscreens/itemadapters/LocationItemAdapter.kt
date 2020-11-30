@@ -17,7 +17,9 @@ import java.security.AccessController.getContext
 
 class LocationItemAdapter(
     val mViewModel: AppViewModel,
-    var mAllLocations: List<Location>
+    var mAllLocations: List<Location>,
+    val mUserId: Int,
+    val mUserStatus: Int
 //todo: pass current user
 ): RecyclerView.Adapter<LocationItemAdapter.LocationViewHolder>(){
 
@@ -29,6 +31,14 @@ class LocationItemAdapter(
     }
 
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
+
+        if(mUserStatus == 1)
+        {
+            holder.itemView.btnLocTrip.visibility = View.INVISIBLE
+        } else {
+            holder.itemView.btnLocTrip.visibility = View.VISIBLE
+        }
+
         var currentLocation = mAllLocations[position]
         holder.itemView.apply {
             tvLocTitle.text = currentLocation.mLocationName
@@ -37,7 +47,7 @@ class LocationItemAdapter(
             tvLocDescription.text = currentLocation.mShortDescription
 
             btnLocTrip.setOnClickListener(){
-                var newTrip = Trip(currentLocation.mLocationName,currentLocation.mTimePeriod,currentLocation.mDangerLevel,2)
+                var newTrip = Trip(currentLocation.mLocationName,currentLocation.mTimePeriod,currentLocation.mDangerLevel,mUserId)
                 mViewModel.insert(newTrip)
                 mViewModel.delete(currentLocation)
             }

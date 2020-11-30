@@ -18,6 +18,9 @@ class AppViewModel(
     var mAllUsers = repository.getUsers()
     var mAllLocations = repository.getLocations()
     var mCurrentUser: LiveData<List<User>> = repository.getUsers()
+    var mAllTrips = repository.getTrips()
+    var mCurrentUserPendingTrips = repository.getTrips()
+    var mCurrentUserTravelledTrips = repository.getTrips()
 
     init {
        var curUser = User("Null","Null","Null","Null",false)
@@ -68,11 +71,11 @@ class AppViewModel(
         repository.getTrips()
     }
 
-    fun getUserPendingTrips(travelled: Boolean, userId: Int) = CoroutineScope(Dispatchers.Main).launch {
-        repository.getUserPendingTrips(travelled,userId)
+    fun getUserPendingTrips(travelled: Boolean, userId: Int) {
+        mCurrentUserPendingTrips = repository.getUserPendingTrips(travelled,userId)
     }
-    fun getUserTravelledTrips(travelled: Boolean, userId: Int) = CoroutineScope(Dispatchers.Main).launch {
-        repository.getUserTravelledTrips(travelled,userId)
+    fun getUserTravelledTrips(travelled: Boolean, userId: Int) {
+        mCurrentUserTravelledTrips = repository.getUserTravelledTrips(travelled,userId)
     }
 
 

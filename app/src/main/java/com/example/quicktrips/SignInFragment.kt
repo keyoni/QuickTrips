@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.quicktrips.databinding.FragmentSignInBinding
+
 import com.example.quicktrips.db.AppDatabase
 import com.example.quicktrips.db.AppViewModel
 import com.example.quicktrips.db.AppViewModelFactory
@@ -38,31 +39,36 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         val sharedPref = requireContext().getSharedPreferences("myAppPref", Context.MODE_PRIVATE)
         var currentUserId = sharedPref.getInt("current_user_id", -1)
         var currentUserStatus = sharedPref.getInt("current_user_isDoctor", -1)
+
+        Log.d("SIGNIN", " on start Userid: $currentUserId")
         if (currentUserId > 0 && currentUserStatus >= 0) {
             val intentLoggedIn = Intent(activity, UserActivity::class.java).also {
                 startActivity(it)
             }
+        }
 
-            binding.btnSignIn.setOnClickListener() {
-                //add UserID as extra then use to connect to account profile page and if Doctor for admin
-                val username = binding.etUserName.text.toString()
-                val userPassword = binding.etPassword.text.toString()
+        binding.btnSignIn.setOnClickListener() {
+            //add UserID as extra then use to connect to account profile page and if Doctor for admin
+            val username = binding.etUserName.text.toString()
+            val userPassword = binding.etPassword.text.toString()
 
-                if (username != "" && userPassword != "") {
-                    signIn(username, userPassword)
+            if (username != "" && userPassword != "") {
+                Log.d("SIGNIN", "Userid: $currentUserId")
+                signIn(username, userPassword)
+                Log.d("SIGNIN", "Userid: $currentUserId")
+            }
+            currentUserId = sharedPref.getInt("current_user_id", -1)
+            currentUserStatus = sharedPref.getInt("current_user_isDoctor",-1)
 
-                    //  val user: User? = signIn(username, userPassword)
-                }
-                if (currentUserId > 0 && currentUserStatus >= 0) {
-                    val intent = Intent(activity, UserActivity::class.java).also {
-                        startActivity(it)
-                    }
+            if (currentUserId > 0 && currentUserStatus >= 0) {
+                val intent = Intent(activity, UserActivity::class.java).also {
+                    startActivity(it)
                 }
             }
+        }
 
-            binding.btnHomeSignUp.setOnClickListener() {
-                Navigation.findNavController(it).navigate(R.id.navigate_to_signUpFragment)
-            }
+        binding.btnHomeSignUp.setOnClickListener() {
+            Navigation.findNavController(it).navigate(R.id.navigate_to_signUpFragment)
         }
     }
 
@@ -80,9 +86,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             } else {
                 Toast.makeText(context, "Welcome To The TARDIS ${it[0].mFirstName}", Toast.LENGTH_SHORT).show()
                var userLog = UserLogin(mViewModel,it[0],requireContext())
-                userLog.Login()
+                userLog.login()
             }
-
 
         })
     }

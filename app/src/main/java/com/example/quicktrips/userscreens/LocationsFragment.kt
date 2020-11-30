@@ -1,5 +1,6 @@
 package com.example.quicktrips.userscreens
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,17 +33,22 @@ class LocationsFragment : Fragment(R.layout.fragment_locations) {
         val database = AppDatabase(requireContext())
         val repository = AppRepository(database)
         val factory = AppViewModelFactory(repository)
+
+        val sharedPref = requireContext().getSharedPreferences("myAppPref", Context.MODE_PRIVATE)
+        var currentUserId = sharedPref.getInt("current_user_id", -1)
+        var currentUserStatus = sharedPref.getInt("current_user_isDoctor", -1)
+
         mViewModel = ViewModelProvider(this,factory).get(AppViewModel::class.java)
-        displayLocations()
+        displayLocations(currentUserId,currentUserStatus)
         binding.btnAddLocation.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.navigate_to_add_location)
         }
 
     }
 
-    private fun displayLocations (){
+    private fun displayLocations (userId: Int, userStatus: Int){
 
-        var adapter = LocationItemAdapter(mViewModel, listOf())
+        var adapter = LocationItemAdapter(mViewModel, listOf(),userId,userStatus)
         binding.rvLocationList.layoutManager = LinearLayoutManager(context)
         binding.rvLocationList.adapter = adapter
 
