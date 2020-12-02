@@ -39,7 +39,16 @@ class LocationsFragment : Fragment(R.layout.fragment_locations) {
         var currentUserStatus = sharedPref.getInt("current_user_isDoctor", -1)
 
         mViewModel = ViewModelProvider(this,factory).get(AppViewModel::class.java)
+
+        if(currentUserStatus == 1){
+            binding.btnAddLocation.visibility = View.VISIBLE
+            binding.btnEditLocation.visibility = View.VISIBLE
+        } else {
+            binding.btnAddLocation.visibility = View.INVISIBLE
+            binding.btnEditLocation.visibility = View.INVISIBLE
+        }
         displayLocations(currentUserId,currentUserStatus)
+
         binding.btnAddLocation.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.navigate_to_add_location)
         }

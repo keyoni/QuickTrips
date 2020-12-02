@@ -19,14 +19,15 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSettingsBinding.bind(view)
 
+        val sharedPref = requireContext().getSharedPreferences("myAppPref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
 
         binding.btnLogOut.setOnClickListener(){
-            val sharedPref = context?.getSharedPreferences("myAppPref", Context.MODE_PRIVATE)
-            val editor = sharedPref?.edit()
-            var userId = editor?.putInt("current_user_id", -1)?.apply()
-            var userisDoctor = editor?.putInt("current_user_isDoctor",-1)?.apply()
 
-            activity?.finish()
+            var userId = editor.putInt("current_user_id", -1).commit()
+            var userisDoctor = editor.putInt("current_user_isDoctor",-1).commit()
+
+            requireActivity().finish()
         }
 
     }

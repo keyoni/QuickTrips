@@ -52,10 +52,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             val username = binding.etUserName.text.toString()
             val userPassword = binding.etPassword.text.toString()
 
+
+//
             if (username != "" && userPassword != "") {
-                Log.d("SIGNIN", "Userid: $currentUserId")
                 signIn(username, userPassword)
-                Log.d("SIGNIN", "Userid: $currentUserId")
+
             }
             currentUserId = sharedPref.getInt("current_user_id", -1)
             currentUserStatus = sharedPref.getInt("current_user_isDoctor",-1)
@@ -65,6 +66,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     startActivity(it)
                 }
             }
+
         }
 
         binding.btnHomeSignUp.setOnClickListener() {
