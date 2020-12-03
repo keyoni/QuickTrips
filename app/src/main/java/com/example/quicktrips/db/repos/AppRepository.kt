@@ -36,6 +36,8 @@ class AppRepository(
 
     fun getUserTravelledTrips(travelled: Boolean, userId: Int): LiveData<List<Trip>> = db.getTripDao().getUserPendingTrips(travelled,userId)
 
+    suspend fun updateTravelled(travelled: Boolean, tripId: Int) = db.getTripDao().updateTravelled(travelled,tripId)
+
     // From Location Dao
     suspend fun insert(location: Location) = db.getLocationDao().insert(location)
 

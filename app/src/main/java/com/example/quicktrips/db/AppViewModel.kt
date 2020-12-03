@@ -78,6 +78,10 @@ class AppViewModel(
         mCurrentUserTravelledTrips = repository.getUserTravelledTrips(travelled,userId)
     }
 
+    fun updateTravelled(travelled: Boolean, tripId: Int)  = CoroutineScope(Dispatchers.Main).launch {
+        repository.updateTravelled(travelled, tripId)
+    }
+
 
     //From Locations
 
