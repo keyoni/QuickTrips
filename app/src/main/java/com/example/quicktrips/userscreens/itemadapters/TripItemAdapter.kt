@@ -17,8 +17,8 @@ class TripItemAdapter(
     val mViewModel: AppViewModel,
     var mAllTrips: List<Trip>,
     val mUserStatus: Int,
-    val mContext: Context
-//todo: pass current user
+    val mContext: Context,
+    val mUserId: Int
 ): RecyclerView.Adapter<TripItemAdapter.TripViewHolder>(){
 
     inner class TripViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -31,6 +31,9 @@ class TripItemAdapter(
     override fun onBindViewHolder(holder: TripViewHolder, position: Int) {
         if (mUserStatus == 1) {
             holder.itemView.swTravelled.visibility = View.VISIBLE
+           // val username = mViewModel.getUsersById(mUserId)
+            //holder.itemView.tvUsernamePending.visibility = View.VISIBLE
+
         } else{
             holder.itemView.swTravelled.visibility = View.INVISIBLE
         }
@@ -40,7 +43,7 @@ class TripItemAdapter(
 
         holder.itemView.swTravelled.setOnClickListener(){
             if(holder.itemView.swTravelled.isChecked){
-                mViewModel.updateTravelled(true,currentTrip.mTripId!!)
+                mViewModel.updateTravelled(true ,currentTrip.mTripId!!)
             }else
             {
                 Toast.makeText(mContext, "Time cannot be rewritten", Toast.LENGTH_SHORT).show()

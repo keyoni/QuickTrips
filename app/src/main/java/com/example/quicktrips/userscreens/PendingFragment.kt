@@ -43,7 +43,7 @@ class PendingFragment : Fragment(R.layout.fragment_pending) {
     }
 
     private fun displayPendingTrips(userId: Int, userStatus: Int){
-        var adapter = TripItemAdapter(mViewModel, listOf(),userStatus,requireContext())
+        var adapter = TripItemAdapter(mViewModel, listOf(),userStatus,requireContext(),userId)
         binding.rvTripPendingList.layoutManager = LinearLayoutManager(context)
         binding.rvTripPendingList.adapter = adapter
 

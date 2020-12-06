@@ -53,6 +53,11 @@ class AppViewModel(
        mCurrentUser = repository.getUserByUsernameAndPassword(username,password)
     }
 
+    fun updateBio(bioNew: String, userId: Int) = CoroutineScope(Dispatchers.Main).launch {
+        repository.updateBio(bioNew,userId)
+    }
+
+
     //From Trips
 
     fun insert(trip: Trip) = CoroutineScope(Dispatchers.Main).launch {

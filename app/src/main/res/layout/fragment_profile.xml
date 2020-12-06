@@ -8,59 +8,40 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vgl40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".40" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hgl25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".25" />
-
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:layout_width="150dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEdit"
-        app:layout_constraintEnd_toStartOf="@+id/vgl40"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/uploadpic" />
+        app:layout_constraintGuide_begin="309dp" />
 
     <TextView
         android:id="@+id/tvFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:text="TextView"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/hgl2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="@+id/vgl40"
+        app:layout_constraintEnd_toStartOf="@+id/tvLastName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="TextView"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/hgl25"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/hgl2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="@+id/vgl40"
-        app:layout_constraintTop_toTopOf="@+id/hgl2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvFirstName"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hgl2"
@@ -76,16 +57,16 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tvTravelledTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/hgl25" />
+        app:layout_constraintTop_toTopOf="@+id/hgl2"
+        app:layout_constraintBottom_toTopOf="@id/btnEdit"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTravelledTrips"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -95,17 +76,17 @@
 
     <Button
         android:id="@+id/btnEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="18dp"
+        android:layout_width="78dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="20dp"
         android:text="Edit"
-        app:layout_constraintBottom_toTopOf="@+id/tvBio"
-        app:layout_constraintEnd_toStartOf="@+id/vgl40"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfile"
-        app:layout_constraintVertical_bias="1.0" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/hgl25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tvBio"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvTravelledTitle"
@@ -114,21 +95,23 @@
         android:text="Locations Travelled"
         android:textAlignment="center"
         android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/rvTravelledTrips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/rvTravelledTrips"
-        app:layout_constraintTop_toBottomOf="@+id/tvBio"/>
+        app:layout_constraintTop_toBottomOf="@+id/hgl25" />
 
     <Button
-        android:id="@+id/tvPrev"
+        android:id="@+id/btnPrev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prev"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:layout_constraintVertical_bias="0.217" />
 
     <Button
         android:id="@+id/btnNext"
@@ -137,20 +120,29 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:layout_constraintVertical_bias="0.217" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".5" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="631dp" />
+        app:layout_constraintGuide_begin="545dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="310dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

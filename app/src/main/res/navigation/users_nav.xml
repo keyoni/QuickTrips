@@ -23,7 +23,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.quicktrips.userscreens.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/navigate_to_updateBioFragment"
+            app:destination="@id/updateBioFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.quicktrips.userscreens.SettingsFragment"
@@ -37,5 +41,14 @@
         <action
             android:id="@+id/navigate_to_location_main"
             app:destination="@id/locationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateBioFragment"
+        android:name="com.example.quicktrips.userscreens.UpdateBioFragment"
+        android:label="fragment_update_bio"
+        tools:layout="@layout/fragment_update_bio" >
+        <action
+            android:id="@+id/navigate_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

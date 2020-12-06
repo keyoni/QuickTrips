@@ -22,6 +22,9 @@ class AppRepository(
     fun getUsersById(userId: Int): LiveData<List<User>> = db.getUserDao().getUsersById(userId)
 
     fun getUserByUsernameAndPassword (username: String, password: String): LiveData<List<User>> = db.getUserDao().getUsersByUsernameAndPassword(username, password)
+
+    suspend fun updateBio( bioNew: String, userId: Int) = db.getUserDao().updateBio(bioNew, userId)
+
     // from Trip Dao
 
     suspend fun insert(trip: Trip) = db.getTripDao().insert(trip)
