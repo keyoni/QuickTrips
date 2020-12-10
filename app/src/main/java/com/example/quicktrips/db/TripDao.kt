@@ -29,4 +29,10 @@ interface TripDao {
 //make querey to update and make a colum name for each color and put set to whatever is passed in
     @Query("UPDATE trip_table SET hasTravelled = :travelled WHERE mTripId = :tripId ")
     suspend fun updateTravelled(travelled: Boolean, tripId: Int)
+
+    @Query("SELECT * FROM trip_table WHERE hasTravelled = :travelled")
+    fun getAllTravelledTrips(travelled: Boolean): LiveData<List<Trip>>
+
+    @Query("SELECT * FROM trip_table where mUserIdTrip = :userId")
+    fun getAllUserTrips(userId: Int): LiveData<List<Trip>>
 }

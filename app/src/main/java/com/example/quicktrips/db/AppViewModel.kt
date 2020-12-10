@@ -21,10 +21,9 @@ class AppViewModel(
     var mAllTrips = repository.getTrips()
     var mCurrentUserPendingTrips = repository.getTrips()
     var mCurrentUserTravelledTrips = repository.getTrips()
+    var mCurrentUserAllTrips = repository.getTrips()
+    var mAllTravelledTrips = repository.getTrips()
 
-    init {
-       var curUser = User("Null","Null","Null","Null",false)
-    }
     // From Users
 
    // var loggedInUser = repository.getUserByUsernameAndPassword()
@@ -85,6 +84,12 @@ class AppViewModel(
 
     fun updateTravelled(travelled: Boolean, tripId: Int)  = CoroutineScope(Dispatchers.Main).launch {
         repository.updateTravelled(travelled, tripId)
+    }
+    fun getAllTravelledTrips(travelled: Boolean) {
+        mAllTravelledTrips = repository.getAllTravelledTrips(travelled)
+    }
+    fun getAllUserTrips(userId: Int) {
+        mCurrentUserAllTrips = repository.getAllUserTrips(userId)
     }
 
 

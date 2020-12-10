@@ -41,6 +41,10 @@ class AppRepository(
 
     suspend fun updateTravelled(travelled: Boolean, tripId: Int) = db.getTripDao().updateTravelled(travelled,tripId)
 
+    fun getAllTravelledTrips(travelled: Boolean) = db.getTripDao().getAllTravelledTrips(travelled)
+
+    fun getAllUserTrips(userId: Int) = db.getTripDao().getAllUserTrips(userId)
+
     // From Location Dao
     suspend fun insert(location: Location) = db.getLocationDao().insert(location)
 

@@ -1,6 +1,7 @@
 package com.example.quicktrips.userscreens.itemadapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,8 @@ class TripItemAdapter(
     var mAllTrips: List<Trip>,
     val mUserStatus: Int,
     val mContext: Context,
-    val mUserId: Int
+    val mUserId: Int,
+
 ): RecyclerView.Adapter<TripItemAdapter.TripViewHolder>(){
 
     inner class TripViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -58,6 +60,8 @@ class TripItemAdapter(
             tvTripDanger.text = currentTrip.TripDangerLevel.toString()
 
         }
+
+
 
     }
 

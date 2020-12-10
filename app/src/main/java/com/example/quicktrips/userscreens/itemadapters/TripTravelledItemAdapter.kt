@@ -1,5 +1,6 @@
 package com.example.quicktrips.userscreens.itemadapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,8 @@ import kotlinx.android.synthetic.main.trip_travelled_item.view.*
 class TripTravelledItemAdapter(
     val mViewModel: AppViewModel,
     var mAllTrips: List<Trip>,
-    val mUserStatus: Int
+    val mUserStatus: Int,
+    val mAdminProfile: Boolean
 // todo: pass current user
 ): RecyclerView.Adapter<TripTravelledItemAdapter.TripTravelledViewHolder>(){
 
@@ -32,6 +34,23 @@ class TripTravelledItemAdapter(
             tvTripTimePeriodTravelled.text = currentTrip.mTripTimePeriod
             tvTripDangerTravelled.text = currentTrip.TripDangerLevel.toString()
 
+        }
+
+        //Should make new adapter or change name of this adapter but for now
+        if(mAdminProfile) {
+            if (currentTrip.hasTravelled) {
+                holder.itemView.apply {
+                    tvTripTravelled.setTextColor(Color.GREEN)
+                    tvTripTimePeriodTravelled.setTextColor(Color.GREEN)
+                    tvTripDangerTravelled.setTextColor(Color.GREEN)
+                }
+            } else {
+                holder.itemView.apply {
+                    tvTripTravelled.setTextColor(Color.RED)
+                    tvTripTimePeriodTravelled.setTextColor(Color.RED)
+                    tvTripDangerTravelled.setTextColor(Color.RED)
+                }
+            }
         }
 
     }

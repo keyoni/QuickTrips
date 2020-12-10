@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/users_nav"
-    app:startDestination="@id/pendingFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/pendingFragment"
@@ -27,6 +27,9 @@
         <action
             android:id="@+id/navigate_to_updateBioFragment"
             app:destination="@id/updateBioFragment" />
+        <action
+            android:id="@+id/navigate_to_viewAllUsersFragment"
+            app:destination="@id/viewAllUsersFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -50,5 +53,30 @@
         <action
             android:id="@+id/navigate_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewAllUsersFragment"
+        android:name="com.example.quicktrips.userscreens.ViewAllUsersFragment"
+        android:label="fragment_view_all_users"
+        tools:layout="@layout/fragment_view_all_users" >
+        <action
+            android:id="@+id/navigate_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/navigate_to_viewUserProfileFragment"
+            app:destination="@id/viewUserProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewUserProfileFragment"
+        android:name="com.example.quicktrips.userscreens.ViewUserProfileFragment"
+        android:label="fragment_view_user_profile"
+        tools:layout="@layout/fragment_view_user_profile" >
+        <action
+            android:id="@+id/navigate_to_viewAllUsersFragment"
+            app:destination="@id/viewAllUsersFragment" />
+        <argument
+            android:name="UserIdrofile"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>
