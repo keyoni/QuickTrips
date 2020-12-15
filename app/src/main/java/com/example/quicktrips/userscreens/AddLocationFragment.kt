@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.quicktrips.R
@@ -31,26 +32,51 @@ class AddLocationFragment : Fragment(R.layout.fragment_add_location) {
         val database = AppDatabase(requireContext())
         val repository = AppRepository(database)
         val factory = AppViewModelFactory(repository)
-        mViewModel = ViewModelProvider(this,factory).get(AppViewModel::class.java)
+        mViewModel = ViewModelProvider(this, factory).get(AppViewModel::class.java)
 
         // Code adapted from Stevdza-San (https://www.youtube.com/watch?v=UBCAWfztTrQ)
-        binding.btnAddLoc.setOnClickListener(){
+        //ToDo: Refactor to DRY
+        val addButton = arguments?.getBoolean("AddButton")
+        if (addButton == true) {
+            binding.btnAddLoc.text = "Add"
+        } else {
+
+            //Updating Location
+            binding.btnAddLoc.text = "Update"
+            //val locationId = arguments?.getInt("LocationId")
+            mViewModel.getLocationsById(arguments?.getInt("LocationId")!!)
+            mViewModel.mCurrentLocation.observe(viewLifecycleOwner, Observer {
+                binding.etLocationName.setText(it[0].mLocationName)
+                binding.etLocationTimePeriod.setText(it[0].mTimePeriod)
+                binding.etLocationLevelOfDanger.setText(it[0].mDangerLevel.toString())
+                binding.etLocationDescription.setText(it[0].mShortDescription)
+
+            })
+
+        }
+        binding.btnAddLoc.setOnClickListener() {
             val locationName = binding.etLocationName.text.toString()
             val locTimePeriod = binding.etLocationTimePeriod.text.toString()
             val locLevelOfDanger = binding.etLocationLevelOfDanger.text.toString()
             val locDescription = binding.etLocationDescription.text.toString()
 
             //todo: block doctor from adding too many locations
-            if(locationName != "" && locTimePeriod!= "" && locDescription != "" && locLevelOfDanger != "" ) {
-                val newLocation = Location(locationName,locTimePeriod,locLevelOfDanger.toInt(),locDescription)
-                mViewModel.insert(newLocation)
-                Toast.makeText(context,"New Location added!", Toast.LENGTH_LONG).show()
+            if (locationName != "" && locTimePeriod != "" && locDescription != "" && locLevelOfDanger != "") {
+                val newLocation =
+                    Location(locationName, locTimePeriod, locLevelOfDanger.toInt(), locDescription)
+                if (addButton == true) {
+                    mViewModel.insert(newLocation)
+                    Toast.makeText(context, "$locationName Added!", Toast.LENGTH_LONG).show()
+                } else {
+                    //make update queary with just get location by id then update each line i guess
+                    mViewModel.update(newLocation)
+
+                    Toast.makeText(context, "$locationName Updated!", Toast.LENGTH_LONG).show()
+                }
                 Navigation.findNavController(it).navigate(R.id.navigate_to_location_main)
             } else {
-                Toast.makeText(context,"Please enter all information!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please enter all information!", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -42,15 +43,14 @@ class LocationsFragment : Fragment(R.layout.fragment_locations) {
 
         if(currentUserStatus == 1){
             binding.btnAddLocation.visibility = View.VISIBLE
-            binding.btnEditLocation.visibility = View.VISIBLE
         } else {
             binding.btnAddLocation.visibility = View.INVISIBLE
-            binding.btnEditLocation.visibility = View.INVISIBLE
         }
         displayLocations(currentUserId,currentUserStatus)
 
         binding.btnAddLocation.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.navigate_to_add_location)
+            val bundle = bundleOf("AddButton" to true )
+            Navigation.findNavController(it).navigate(R.id.navigate_to_add_location,bundle)
         }
 
     }

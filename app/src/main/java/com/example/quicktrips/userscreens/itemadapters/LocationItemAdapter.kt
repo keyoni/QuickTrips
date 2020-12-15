@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quicktrips.R
 import com.example.quicktrips.db.AppViewModel
@@ -35,22 +37,35 @@ class LocationItemAdapter(
         if(mUserStatus == 1)
         {
             holder.itemView.btnLocTrip.visibility = View.INVISIBLE
+            holder.itemView.ivEdit.visibility = View.VISIBLE
         } else {
             holder.itemView.btnLocTrip.visibility = View.VISIBLE
+            holder.itemView.ivEdit.visibility = View.INVISIBLE
         }
 
         var currentLocation = mAllLocations[position]
+        // Adds Location info to Recycle Viewer
         holder.itemView.apply {
             tvLocTitle.text = currentLocation.mLocationName
             tvLocTimePeriod.text = currentLocation.mTimePeriod
             tvLocDanger.text = currentLocation.mDangerLevel.toString()
             tvLocDescription.text = currentLocation.mShortDescription
 
+            // Adds Trip to User Pending Trips and removes location from db
             btnLocTrip.setOnClickListener(){
                 var newTrip = Trip(currentLocation.mLocationName,currentLocation.mTimePeriod,currentLocation.mDangerLevel,mUserId)
                 mViewModel.insert(newTrip)
                 mViewModel.delete(currentLocation)
+
+
             }
+
+            ivEdit.setOnClickListener(){
+                val bundle = bundleOf("LocationId" to currentLocation.mLocationId )
+                Navigation.findNavController(it).navigate(R.id.navigate_to_add_location,bundle)
+            }
+
+
 
         }
 

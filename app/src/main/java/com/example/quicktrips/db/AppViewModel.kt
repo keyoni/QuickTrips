@@ -16,7 +16,9 @@ class AppViewModel(
 ): ViewModel() {
 
     var mAllUsers = repository.getUsers()
+    var mUserCheck = repository.getUsers()
     var mAllLocations = repository.getLocations()
+    var mCurrentLocation = repository.getLocations()
     var mCurrentUser: LiveData<List<User>> = repository.getUsers()
     var mAllTrips = repository.getTrips()
     var mCurrentUserPendingTrips = repository.getTrips()
@@ -40,8 +42,12 @@ class AppViewModel(
         repository.delete(user)
     }
 
-    fun getUsers() = CoroutineScope(Dispatchers.Main).launch {
-        repository.getUsers()
+    fun getUsers() {
+       mAllUsers =  repository.getUsers()
+    }
+
+    fun getUserByUserName(username: String){
+        mUserCheck = repository.getUserbyUsername(username)
     }
 
     fun getUsersById(userId: Int) {
@@ -111,8 +117,8 @@ class AppViewModel(
      //   repository.getLocations()
     //}
 
-    fun getLocationsById(locationId: Int) = CoroutineScope(Dispatchers.Main).launch {
-        repository.getLocationsById(locationId)
+    fun getLocationsById(locationId: Int) {
+       mCurrentLocation = repository.getLocationsById(locationId)
     }
 
 }

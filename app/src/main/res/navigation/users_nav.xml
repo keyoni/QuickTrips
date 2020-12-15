@@ -44,6 +44,12 @@
         <action
             android:id="@+id/navigate_to_location_main"
             app:destination="@id/locationsFragment" />
+        <argument
+            android:name="LocationId"
+            app:argType="integer" />
+        <argument
+            android:name="AddButton"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/updateBioFragment"
@@ -75,7 +81,7 @@
             android:id="@+id/navigate_to_viewAllUsersFragment"
             app:destination="@id/viewAllUsersFragment" />
         <argument
-            android:name="UserIdrofile"
+            android:name="UserIdProfile"
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>

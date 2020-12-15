@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.quicktrips.R
@@ -15,6 +16,8 @@ import com.example.quicktrips.db.AppDatabase
 import com.example.quicktrips.db.AppViewModel
 import com.example.quicktrips.db.AppViewModelFactory
 import com.example.quicktrips.db.repos.AppRepository
+import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_update_bio.*
 
 class UpdateBioFragment(
 
@@ -36,7 +39,10 @@ class UpdateBioFragment(
         val currentUserId = sharedPref.getInt("current_user_id", -1)
 
         //current users current bio to populate et
-
+        mViewModel.getUsersById(currentUserId)
+        mViewModel.mCurrentUser.observe(viewLifecycleOwner, Observer {
+            binding.etUpdate.setText(it[0].mBio)
+        })
         // save button saves new bio
         binding.btnSave.setOnClickListener(){
             val newBio = binding.etUpdate.text.toString()

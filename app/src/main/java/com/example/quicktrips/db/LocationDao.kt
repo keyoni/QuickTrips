@@ -19,7 +19,7 @@ interface LocationDao {
     fun getLocations(): LiveData<List<Location>>
 
     @Query("SELECT * FROM location_table WHERE mLocationId = :locationId ")
-    suspend fun getLocationsById(locationId: Int): Location
+     fun getLocationsById(locationId: Int): LiveData<List<Location>>
 
     //Add Query get location by danger level
 }

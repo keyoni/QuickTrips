@@ -24,6 +24,10 @@ interface UserDao {
 
    @Query("SELECT * FROM user_table WHERE mUserName = :username AND mPassword = :password ")
     fun getUsersByUsernameAndPassword(username: String, password: String): LiveData<List<User>>
+
+    @Query("SELECT * FROM user_table WHERE mUserName = :username")
+    fun getUserByUsername(username: String): LiveData<List<User>>
+
     //todo: Make update bio like update travlled query
     // update table set bio where has userid
 

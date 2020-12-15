@@ -21,6 +21,8 @@ class AppRepository(
 
     fun getUsersById(userId: Int): LiveData<List<User>> = db.getUserDao().getUsersById(userId)
 
+    fun getUserbyUsername(username: String): LiveData<List<User>> = db.getUserDao().getUserByUsername(username)
+
     fun getUserByUsernameAndPassword (username: String, password: String): LiveData<List<User>> = db.getUserDao().getUsersByUsernameAndPassword(username, password)
 
     suspend fun updateBio( bioNew: String, userId: Int) = db.getUserDao().updateBio(bioNew, userId)
@@ -54,7 +56,7 @@ class AppRepository(
 
     fun getLocations(): LiveData<List<Location>> = db.getLocationDao().getLocations()
 
-    suspend fun getLocationsById(locationId: Int): Location = db.getLocationDao().getLocationsById(locationId)
+     fun getLocationsById(locationId: Int): LiveData<List<Location>> = db.getLocationDao().getLocationsById(locationId)
 
 
 
