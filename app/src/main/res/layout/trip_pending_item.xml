@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="36sp"
         android:text="Location Name"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,13 +20,13 @@
         android:id="@+id/tvTripDanger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="16dp"
         android:text="0"
         android:textSize="30sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvTripPending"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toEndOf="@+id/tvTripPending" />
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTripTimePeriod"
@@ -34,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:textSize="20sp"
         android:text="Time Period"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTripPending" />
@@ -50,9 +50,9 @@
         android:text="UserName"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/swTravelled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toEndOf="@id/tvTripTimePeriod"
         app:layout_constraintTop_toBottomOf="@+id/tvTripPending" />
 
@@ -62,10 +62,22 @@
         android:layout_height="wrap_content"
         android:text="Travelled"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toEndOf="@+id/tvUsernamePending"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteY="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="308dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="274dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

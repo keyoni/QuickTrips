@@ -1,5 +1,6 @@
 package com.example.quicktrips.userscreens.itemadapters
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -26,13 +27,14 @@ class TripTravelledItemAdapter(
         return TripTravelledViewHolder(view)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: TripTravelledItemAdapter.TripTravelledViewHolder, position: Int) {
 
         var currentTrip = mAllTrips[position]
         holder.itemView.apply {
             tvTripTravelled.text = currentTrip.mTripLocation
             tvTripTimePeriodTravelled.text = currentTrip.mTripTimePeriod
-            tvTripDangerTravelled.text = currentTrip.TripDangerLevel.toString()
+            //tvTripDangerTravelled.text = currentTrip.TripDangerLevel.toString()
 
         }
 
@@ -40,15 +42,15 @@ class TripTravelledItemAdapter(
         if(mAdminProfile) {
             if (currentTrip.hasTravelled) {
                 holder.itemView.apply {
-                    tvTripTravelled.setTextColor(Color.GREEN)
-                    tvTripTimePeriodTravelled.setTextColor(Color.GREEN)
-                    tvTripDangerTravelled.setTextColor(Color.GREEN)
+                    tvTripTravelled.setTextColor(Color.parseColor("#7BBF5E"))
+                    tvTripTimePeriodTravelled.setTextColor(Color.parseColor("#7BBF5E"))
+                   // tvTripDangerTravelled.setTextColor(R.color.colorGreen)
                 }
             } else {
                 holder.itemView.apply {
-                    tvTripTravelled.setTextColor(Color.RED)
-                    tvTripTimePeriodTravelled.setTextColor(Color.RED)
-                    tvTripDangerTravelled.setTextColor(Color.RED)
+                    tvTripTravelled.setTextColor(Color.parseColor("#BF5E6A"))
+                    tvTripTimePeriodTravelled.setTextColor(Color.parseColor("#BF5E6A"))
+                    //tvTripDangerTravelled.setTextColor(R.color.colorRed)
                 }
             }
         }

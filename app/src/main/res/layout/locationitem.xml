@@ -10,10 +10,13 @@
         android:id="@+id/tvLocTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:textSize="36sp"
+        android:layout_marginEnd="32dp"
         android:text="Location Name"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,11 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:textSize="30sp"
         android:text="0"
+        android:textSize="30sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvLocTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvLocTitle" />
+        app:layout_constraintStart_toStartOf="@+id/guideline9" />
 
     <TextView
         android:id="@+id/tvLocTimePeriod"
@@ -34,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:textSize="20sp"
         android:text="Time Period"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLocTitle" />
@@ -68,10 +71,27 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="224dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLocTrip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLocDescription"
         app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="311dp" />
+
+    <ImageView
+        android:id="@+id/ivLocDelete"
+        android:layout_width="47dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnLocTrip"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toEndOf="@+id/ivEdit"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

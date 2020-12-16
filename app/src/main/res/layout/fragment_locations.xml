@@ -51,6 +51,7 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="32dp"
     android:clickable="true"
+    android:outlineAmbientShadowColor="@color/colorButton"
     android:src="@android:drawable/ic_menu_add"
     app:layout_constraintBottom_toTopOf="@+id/guideline2"
     app:layout_constraintEnd_toEndOf="parent"

@@ -6,6 +6,7 @@
     <color name="colorAccentAccent">#81EAE8</color>
     <color name="colorButton">#F7ED8E</color>
     <color name="colorPurple">#E2CFEA</color>
-    <color name="colorRed">#E71D36</color>
+    <color name="colorRed">#BF5E6A</color>
+    <color name="colorGreen">#7BBF5E</color>
     <color name="colorBlack">#000000</color>
 </resources>

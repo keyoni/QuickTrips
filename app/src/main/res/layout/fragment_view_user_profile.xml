@@ -15,30 +15,15 @@
         app:layout_constraintGuide_begin="203dp" />
 
     <TextView
-        android:id="@+id/tvFirstNameAdmin"
+        android:id="@+id/tvNameAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/hgl2Admin"
-        app:layout_constraintEnd_toStartOf="@+id/tvLastNameAdmin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvLastNameAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
         android:text="TextView"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/hgl2Admin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvFirstNameAdmin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -54,6 +39,7 @@
         android:layout_height="71dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/colorAccentAccent"
         android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/hgl25Admin"
@@ -66,25 +52,26 @@
         android:id="@+id/rvTripsAdmin"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:background="@color/colorAccentAccent"
         app:layout_constraintBottom_toTopOf="@+id/guideline9Admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPendingAndTravelledTitleAdmin" />
 
+
     <TextView
         android:id="@+id/tvPendingAndTravelledTitleAdmin"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:text="Travelled and Pending"
+        android:text="Travelled and Pending \nTrips"
         android:textAlignment="center"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/rvTripsAdmin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hgl25Admin" />
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8Admin"
@@ -98,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="663dp" />
+        app:layout_constraintGuide_begin="508dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3Admin"

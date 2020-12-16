@@ -115,8 +115,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             mViewModel.getUsersById(userId)
 
             mViewModel.mCurrentUser.observe(viewLifecycleOwner, Observer {
-                binding.tvFirstName.text = it[0].mFirstName
-                binding.tvLastName.text = it[0].mLastName
+                "${it[0].mFirstName} ${it[0].mLastName}".also { binding.tvNameProfile.text = it }
                 binding.tvBio.text = it[0].mBio
             })
         if (userStatus == 0) {

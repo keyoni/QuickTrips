@@ -49,8 +49,7 @@ class ViewUserProfileFragment : Fragment(R.layout.fragment_view_user_profile) {
         mViewModel.getUsersById(userId!!)
 
         mViewModel.mCurrentUser.observe(viewLifecycleOwner, Observer {
-            binding.tvFirstNameAdmin.text = it[0].mFirstName
-            binding.tvLastNameAdmin.text = it[0].mLastName
+            "${it[0].mFirstName} ${it[0].mLastName}".also { binding.tvNameAdmin.text = it }
             binding.tvBioAdmin.text = it[0].mBio
         })
 

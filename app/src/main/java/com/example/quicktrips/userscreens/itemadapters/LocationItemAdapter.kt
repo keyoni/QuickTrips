@@ -1,5 +1,6 @@
 package com.example.quicktrips.userscreens.itemadapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +39,14 @@ class LocationItemAdapter(
         {
             holder.itemView.btnLocTrip.visibility = View.INVISIBLE
             holder.itemView.ivEdit.visibility = View.VISIBLE
+            holder.itemView.ivLocDelete.visibility = View.VISIBLE
         } else {
             holder.itemView.btnLocTrip.visibility = View.VISIBLE
             holder.itemView.ivEdit.visibility = View.INVISIBLE
+            holder.itemView.ivLocDelete.visibility = View.INVISIBLE
         }
 
+        //Todo: sortlocation by danger
         var currentLocation = mAllLocations[position]
         // Adds Location info to Recycle Viewer
         holder.itemView.apply {
@@ -53,9 +57,26 @@ class LocationItemAdapter(
 
             // Adds Trip to User Pending Trips and removes location from db
             btnLocTrip.setOnClickListener(){
-                var newTrip = Trip(currentLocation.mLocationName,currentLocation.mTimePeriod,currentLocation.mDangerLevel,mUserId)
-                mViewModel.insert(newTrip)
-                mViewModel.delete(currentLocation)
+                val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
+                alertDialog.setTitle("Add Trip!")
+                alertDialog.setMessage("Are you sure you want to travel to ${currentLocation.mLocationName}?")
+                alertDialog.setPositiveButton("Yes") {_,_ ->
+                    var newTrip = Trip(currentLocation.mLocationName,currentLocation.mTimePeriod,currentLocation.mDangerLevel,mUserId)
+                    mViewModel.insert(newTrip)
+                    mViewModel.delete(currentLocation)
+                    Toast.makeText(context, "Allons-y! ${currentLocation.mLocationName} has added to your Pending Trips", Toast.LENGTH_SHORT).show()
+                }
+                alertDialog.setNegativeButton("No"){_,_ ->}
+                val alert  = alertDialog.create()
+                alert.setCanceledOnTouchOutside(
+                    true
+                )
+                alert.show()
+
+
+
+                //todo: Add dialog box to comfrom trip, extra dialong for danger 3+. mayve only danger 3+ if user has travelled on at least 2 trips also delete users next
+
 
 
             }
@@ -65,7 +86,22 @@ class LocationItemAdapter(
                 Navigation.findNavController(it).navigate(R.id.navigate_to_add_location,bundle)
             }
 
+            ivLocDelete.setOnClickListener(){
+                val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
+                alertDialog.setTitle("Location Remove Confirmation")
+                alertDialog.setMessage("Are you sure you want to remove  ${currentLocation.mLocationName}?")
+                alertDialog.setPositiveButton("Yes") {_,_ ->
+                    mViewModel.delete(currentLocation)
+                    Toast.makeText(context, "${currentLocation.mLocationName} has been removed", Toast.LENGTH_SHORT).show()
+                }
+                alertDialog.setNegativeButton("No"){_,_ ->}
+                val alert  = alertDialog.create()
+                alert.setCanceledOnTouchOutside(
+                    true
+                )
+                alert.show()
 
+            }
 
         }
 
