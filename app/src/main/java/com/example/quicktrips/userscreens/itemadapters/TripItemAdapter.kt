@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quicktrips.R
 import com.example.quicktrips.db.AppViewModel
@@ -19,7 +20,7 @@ class TripItemAdapter(
     var mAllTrips: List<Trip>,
     val mUserStatus: Int,
     val mContext: Context,
-    val mUserId: Int,
+    val mUserId: Int
 
 ): RecyclerView.Adapter<TripItemAdapter.TripViewHolder>(){
 
@@ -33,14 +34,14 @@ class TripItemAdapter(
     override fun onBindViewHolder(holder: TripViewHolder, position: Int) {
         if (mUserStatus == 1) {
             holder.itemView.swTravelled.visibility = View.VISIBLE
-           // val username = mViewModel.getUsersById(mUserId)
-            //holder.itemView.tvUsernamePending.visibility = View.VISIBLE
+            holder.itemView.tvUsernamePending.visibility = View.VISIBLE
 
         } else{
             holder.itemView.swTravelled.visibility = View.INVISIBLE
+            holder.itemView.tvUsernamePending.visibility = View.INVISIBLE
         }
         var currentTrip = mAllTrips[position]
-// if this doesn't work, then need to make travelled a part of the contrsutore and remake it
+
         holder.itemView.swTravelled.isChecked = currentTrip.hasTravelled
 
         holder.itemView.swTravelled.setOnClickListener(){
@@ -60,6 +61,12 @@ class TripItemAdapter(
             tvTripDanger.text = currentTrip.TripDangerLevel.toString()
 
         }
+
+        mViewModel.getUsersById(currentTrip.mUserIdTrip)
+        mViewModel.mCurrentUser.observeForever(Observer {
+            holder.itemView.tvUsernamePending.text = it[0].mUserName
+        })
+
 
 
 

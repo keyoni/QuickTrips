@@ -69,7 +69,7 @@ class LocationsFragment : Fragment(R.layout.fragment_locations) {
 
     private fun displayLocations (userId: Int, userStatus: Int){
 
-        var adapter = LocationItemAdapter(mViewModel, listOf(),userId,userStatus)
+        var adapter = LocationItemAdapter(mViewModel, listOf(),userId,userStatus,viewLifecycleOwner)
         binding.rvLocationList.layoutManager = LinearLayoutManager(context)
         binding.rvLocationList.adapter = adapter
 

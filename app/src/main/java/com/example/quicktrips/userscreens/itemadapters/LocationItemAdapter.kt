@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,8 @@ class LocationItemAdapter(
     val mViewModel: AppViewModel,
     var mAllLocations: List<Location>,
     val mUserId: Int,
-    val mUserStatus: Int
+    val mUserStatus: Int,
+    val lifecycleOwner: LifecycleOwner
 //todo: pass current user
 ): RecyclerView.Adapter<LocationItemAdapter.LocationViewHolder>(){
 
@@ -60,7 +62,7 @@ class LocationItemAdapter(
             btnLocTrip.setOnClickListener(){
 
                 mViewModel.getAllUserTrips(mUserId)
-                mViewModel.mCurrentUserAllTrips.observeForever( Observer {
+                mViewModel.mCurrentUserAllTrips.observe(lifecycleOwner, Observer {
                     var locationTravelled = false
                     for( trip in it) {
                         if (currentLocation.mLocationId == trip.mLocationIdTrip) {
