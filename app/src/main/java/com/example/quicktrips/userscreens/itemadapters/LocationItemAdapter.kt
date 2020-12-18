@@ -46,7 +46,7 @@ class LocationItemAdapter(
             holder.itemView.ivLocDelete.visibility = View.INVISIBLE
         }
 
-        //Todo: sortlocation by danger
+
         var currentLocation = mAllLocations[position]
         // Adds Location info to Recycle Viewer
         holder.itemView.apply {

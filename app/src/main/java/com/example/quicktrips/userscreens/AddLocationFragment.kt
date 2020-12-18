@@ -60,15 +60,15 @@ class AddLocationFragment : Fragment(R.layout.fragment_add_location) {
             val locLevelOfDanger = binding.etLocationLevelOfDanger.text.toString()
             val locDescription = binding.etLocationDescription.text.toString()
 
-            //todo: block doctor from adding too many locations
+
             if (locationName != "" && locTimePeriod != "" && locDescription != "" && locLevelOfDanger != "") {
                 val newLocation =
                     Location(locationName, locTimePeriod, locLevelOfDanger.toInt(), locDescription)
                 if (addButton == true) {
                     mViewModel.insert(newLocation)
-                    Toast.makeText(context, "$locationName Added!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "They'll love it here! $locationName Added!", Toast.LENGTH_LONG).show()
                 } else {
-                    //make update queary with just get location by id then update each line i guess
+                    //todo: Maybe how to fix make update queary with just get location by id then update each line i guess
                     mViewModel.update(newLocation)
 
                     Toast.makeText(context, "$locationName Updated!", Toast.LENGTH_LONG).show()
