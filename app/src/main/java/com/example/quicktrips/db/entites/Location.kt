@@ -12,4 +12,5 @@ data class Location(
 ) {
     @PrimaryKey(autoGenerate = true)
     var mLocationId : Int? = null
+    var mDoctorTravelled = 0
 }

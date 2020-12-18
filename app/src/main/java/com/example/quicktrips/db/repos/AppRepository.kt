@@ -58,6 +58,7 @@ class AppRepository(
 
      fun getLocationsById(locationId: Int): LiveData<List<Location>> = db.getLocationDao().getLocationsById(locationId)
 
+    suspend fun updateLocationFull(locationName: String, timePeriod: String, dangerLevel: Int, description: String, locationId: Int) = db.getLocationDao().updateLocationFull(locationName, timePeriod, dangerLevel, description, locationId)
 
 
 

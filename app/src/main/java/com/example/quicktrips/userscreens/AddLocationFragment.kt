@@ -69,7 +69,7 @@ class AddLocationFragment : Fragment(R.layout.fragment_add_location) {
                     Toast.makeText(context, "They'll love it here! $locationName Added!", Toast.LENGTH_LONG).show()
                 } else {
                     //todo: Maybe how to fix make update queary with just get location by id then update each line i guess
-                    mViewModel.update(newLocation)
+                    mViewModel.updateLocationFull(locationName, locTimePeriod, locLevelOfDanger.toInt(), locDescription,arguments?.getInt("LocationId")!!)
 
                     Toast.makeText(context, "$locationName Updated!", Toast.LENGTH_LONG).show()
                 }

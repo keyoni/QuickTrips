@@ -121,4 +121,8 @@ class AppViewModel(
        mCurrentLocation = repository.getLocationsById(locationId)
     }
 
+    fun updateLocationFull(locationName: String, timePeriod: String, dangerLevel: Int, description: String, locationId: Int) = CoroutineScope(Dispatchers.Main).launch {
+        repository.updateLocationFull(locationName, timePeriod, dangerLevel, description, locationId)
+    }
+
 }

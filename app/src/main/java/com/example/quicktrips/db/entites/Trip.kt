@@ -14,4 +14,7 @@ data class Trip(
     @PrimaryKey
     var mTripId: Int? = null
     var hasTravelled: Boolean = false
+    var mUsernameTrip: String = ""
+    var mUserReview: String = "No review yet"
+    var mLocationIdTrip : Int? = null
 }
