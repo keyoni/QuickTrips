@@ -8,7 +8,7 @@ import com.example.quicktrips.db.entites.Location
 import com.example.quicktrips.db.entites.Trip
 import com.example.quicktrips.db.entites.User
 
-@Database(entities = [User::class, Location::class, Trip::class],version = 2)
+@Database(entities = [User::class, Location::class, Trip::class],version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getUserDao() : UserDao
     abstract fun getLocationDao() : LocationDao

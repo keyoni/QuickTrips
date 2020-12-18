@@ -10,11 +10,12 @@ data class Trip(
     var mTripTimePeriod: String,
     var TripDangerLevel: Int,
     var mUserIdTrip: Int,
+    var mLocationIdTrip: Int
 ) {
     @PrimaryKey
     var mTripId: Int? = null
     var hasTravelled: Boolean = false
     var mUsernameTrip: String = ""
     var mUserReview: String = "No review yet"
-    var mLocationIdTrip : Int? = null
+
 }
