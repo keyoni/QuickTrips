@@ -51,24 +51,38 @@ class UserActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener{ item ->
             when (item.itemId) {
                 R.id.pendingFragment -> {
-                    Log.d("NAVTEST", "Pending Clicked")
-                    //todo: add check for pending trips, if non pop toast and gave to locations
-                    //might need a small class to check for pending trips or just add a view model mess here lol
-                    //example
-                    // R.id.home -> {
-                    //                    findNavController(R.id.nav_host_fragment)
-                    //                        .navigate(R.id.mainFragment)
-                    //                }
-                    //var checkPending = false
-                    mViewModel.getUserPendingTrips(false, currentUserId)
-                    mViewModel.mCurrentUserPendingTrips.observe(this, Observer  {
-                        if (it.isNotEmpty()) {
-                        navController.navigate(R.id.pendingFragment)
-                    }   else {
-                        Toast.makeText(this, "No Pending Trips, Pick a location!", Toast.LENGTH_SHORT).show()
-                        navController.navigate(R.id.locationsFragment)
+                    if(currentUserStatus == 0) {
+                        mViewModel.getUserPendingTrips(false, currentUserId)
+                        mViewModel.mCurrentUserPendingTrips.observe(this, Observer {
+                            if (it.isNotEmpty()) {
+                                navController.navigate(R.id.pendingFragment)
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "No Pending Trips, Pick a location!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                navController.navigate(R.id.locationsFragment)
+                            }
+                        })
+                    } else if (currentUserStatus == 1) {
+                        mViewModel.getTrips()
+                        mViewModel.mAllTrips.observe(this, Observer {
+                            if (it.isNotEmpty()) {
+                                navController.navigate(R.id.pendingFragment)
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "No Pending Trips. Be patient, They'll come. ",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                navController.navigate(R.id.profileFragment)
+                            }
+
+                        })
+
+
                     }
-                    })
 
                     true
                 }

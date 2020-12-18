@@ -42,8 +42,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
             //Log.d("SIGNIN","$username, $password,$firstName,$lastName,$isDoctor")
             if(username != "" && userPassword != "" && firstName != "" && lastName != "" ) {
-                //ToDo: UseCASE: Username too short
-                if (username.length < 3) {
+                //ToDo: UseCASE: Username wrong length
+                if (username.length < 4 || username.length > 10) {
                     Toast.makeText(context, getString(R.string.too_short_user), Toast.LENGTH_SHORT)
                         .show()
                     //ToDo: UseCase: Password too short
@@ -55,22 +55,20 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                     ).show()
                 } else {
                     // ToDo: UserCase Username Taken!
-                    var userSafe = true
-                    Log.d("SIGNUP","usersafe = $userSafe")
+                    //Log.d("SIGNUP","usersafe = $userSafe")
                     mViewModel.getUserByUserName(username)
-                  // toDO: FIX USER THING SOME HOW - OBSERVER HAPPENS AFTER LATER CHECK?
+
                     mViewModel.mUserCheck.observe(viewLifecycleOwner, Observer   {
                         if (it.isNotEmpty()) {
 
-                            userSafe = false
-                            Log.d("SIGNUP","IN NOT EMPTY, USERSAFE = $userSafe")
+                            //Log.d("SIGNUP","IN NOT EMPTY, USERSAFE = $userSafe")
                             Toast.makeText(
                                 context,
-                                getString(R.string.username_taken) + it[0].mFirstName,
+                                getString(R.string.username_taken),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            Log.d("SIGNUP","CREATING NEW USER, USERSAFE = $userSafe")
+                            //Log.d("SIGNUP","CREATING NEW USER, USERSAFE = $userSafe")
                             val newUser =
                                 User(username, userPassword, firstName, lastName, isDoctor)
                             mViewModel.insert(newUser)
@@ -79,14 +77,11 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                                 getString(R.string.new_user_welcome),
                                 Toast.LENGTH_LONG
                             ).show()
+                            Navigation.findNavController(view)
+                                .navigate(R.id.navigate_to_signInFragment)
 
                         }
                     })
-                    if(userSafe) {
-                        Log.d("SIGNUP"," Back To Signup, USERSAFE = $userSafe")
-                        Navigation.findNavController(it)
-                            .navigate(R.id.navigate_to_signInFragment)
-                    }
                 }
             }else {
                 Toast.makeText(context,"Please enter all information!",Toast.LENGTH_SHORT).show()
