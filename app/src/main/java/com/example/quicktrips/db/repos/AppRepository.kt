@@ -47,6 +47,11 @@ class AppRepository(
 
     fun getAllUserTrips(userId: Int) = db.getTripDao().getAllUserTrips(userId)
 
+    fun getTripById(tripId: Int) = db.getTripDao().getTripById(tripId)
+
+    suspend fun  updateReview ( reviewNew: String, tripId: Int) = db.getTripDao().updateReview(reviewNew, tripId)
+
+
     // From Location Dao
     suspend fun insert(location: Location) = db.getLocationDao().insert(location)
 

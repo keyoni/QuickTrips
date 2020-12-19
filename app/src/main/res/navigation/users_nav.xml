@@ -30,6 +30,9 @@
         <action
             android:id="@+id/navigate_to_viewAllUsersFragment"
             app:destination="@id/viewAllUsersFragment" />
+        <action
+            android:id="@+id/navigate_to_updateReviewFragment"
+            app:destination="@id/updateReviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -84,5 +87,16 @@
             android:name="UserIdProfile"
             app:argType="integer"
             android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateReviewFragment"
+        android:name="com.example.quicktrips.userscreens.UpdateReviewFragment"
+        android:label="fragment_update_review"
+        tools:layout="@layout/fragment_update_review" >
+        <action
+            android:id="@+id/navigate_to_profileFragment_from_update_review"
+            app:destination="@id/profileFragment" />
+        <argument android:name="tripIdReview"
+            app:argType="integer" />
     </fragment>
 </navigation>

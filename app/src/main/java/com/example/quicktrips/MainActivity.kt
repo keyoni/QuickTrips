@@ -6,7 +6,12 @@ import android.os.Bundle
 import android.view.KeyEvent
 import com.example.quicktrips.databinding.ActivityMainBinding
 import com.example.quicktrips.db.entites.User
+/**
+Quick Trips Application by Keyoni McNair
 
+ All References to Doctor Who to their respective owners
+
+*/
 
 class MainActivity : AppCompatActivity() {
 

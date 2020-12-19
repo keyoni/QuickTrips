@@ -84,6 +84,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             mViewModel.mCurrentUserTravelledTrips.observeForever(){
                 adapter.mAllTrips = it
                 adapter.notifyDataSetChanged()
+
+
             }
 
     } else {

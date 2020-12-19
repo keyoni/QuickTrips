@@ -35,4 +35,10 @@ interface TripDao {
 
     @Query("SELECT * FROM trip_table where mUserIdTrip = :userId")
     fun getAllUserTrips(userId: Int): LiveData<List<Trip>>
+
+    @Query("SELECT * FROM trip_table where mTripId = :tripId")
+    fun getTripById(tripId: Int): LiveData<List<Trip>>
+
+    @Query("UPDATE trip_table  SET mUserReview = :reviewNew WHERE mTripId = :tripId")
+    suspend fun  updateReview( reviewNew: String, tripId: Int)
 }

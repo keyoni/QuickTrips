@@ -45,6 +45,7 @@ class UserItemAdapter(
             }
 
         }
+        
             holder.itemView.setOnClickListener() {
                 val bundle = bundleOf("UserIdProfile" to currentUser.mUserId)
                 Navigation.findNavController(it)

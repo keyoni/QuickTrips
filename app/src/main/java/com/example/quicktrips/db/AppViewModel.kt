@@ -25,6 +25,7 @@ class AppViewModel(
     var mCurrentUserTravelledTrips = repository.getTrips()
     var mCurrentUserAllTrips = repository.getTrips()
     var mAllTravelledTrips = repository.getTrips()
+    var mCurrentTrip = repository.getTrips()
 
     // From Users
 
@@ -96,6 +97,13 @@ class AppViewModel(
     }
     fun getAllUserTrips(userId: Int) {
         mCurrentUserAllTrips = repository.getAllUserTrips(userId)
+    }
+  fun getTripById(tripId: Int) {
+          mCurrentTrip = repository.getTripById(tripId)
+    }
+
+    fun updateReview(reviewNew: String, tripId: Int)  = CoroutineScope(Dispatchers.Main).launch {
+        repository.updateReview(reviewNew, tripId)
     }
 
 
