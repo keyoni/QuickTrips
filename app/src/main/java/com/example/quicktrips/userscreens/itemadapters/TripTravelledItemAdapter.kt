@@ -72,28 +72,29 @@ class TripTravelledItemAdapter(
                 }
             }
         } else {
+            if (mUserStatus == 0) {
+                holder.itemView.apply {
+                    setOnClickListener() {
+                        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
+                        alertDialog.setTitle("Review Time!")
+                        alertDialog.setPositiveButton("Add/Edit Review") { _, _ ->
+                            // navas to update review page
+                            //send over trip id in bundle
 
-            holder.itemView.apply {
-                setOnClickListener() {
-                    val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
-                    alertDialog.setTitle("Review Time!")
-                    alertDialog.setPositiveButton("Add/Edit Review") { _, _ ->
-                        // navas to update review page
-                        //send over trip id in bundle
+                            val bundle = bundleOf("tripIdReview" to currentTrip.mTripId!!)
+                            Navigation.findNavController(it)
+                                .navigate(R.id.navigate_to_updateReviewFragment, bundle)
 
-                        val bundle = bundleOf("tripIdReview" to currentTrip.mTripId!!)
-                        Navigation.findNavController(it)
-                            .navigate(R.id.navigate_to_updateReviewFragment, bundle)
-
+                        }
+                        alertDialog.setNegativeButton("Cancel") { _, _ -> }
+                        val alert = alertDialog.create()
+                        alert.setCanceledOnTouchOutside(
+                            true
+                        )
+                        alert.show()
                     }
-                    alertDialog.setNegativeButton("Cancel") { _, _ -> }
-                    val alert = alertDialog.create()
-                    alert.setCanceledOnTouchOutside(
-                        true
-                    )
-                    alert.show()
-                }
 
+                }
             }
         }
     }
