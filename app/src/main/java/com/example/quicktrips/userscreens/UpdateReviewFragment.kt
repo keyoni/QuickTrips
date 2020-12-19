@@ -51,6 +51,7 @@ class UpdateReviewFragment : Fragment(R.layout.fragment_update_review) {
                 Toast.makeText(context, "Please give some honest feedback! Also, be kind!", Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.updateReview(newReview,(arguments?.getInt("tripIdReview")!!))
+                Toast.makeText(context, "I hope you enjoyed your travels!", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(it).navigate(R.id.navigate_to_profileFragment_from_update_review)
             }
         }
